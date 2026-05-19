@@ -1,0 +1,24 @@
+{
+  "id": "conv-1776489890565-6zuafui1f",
+  "providerId": "claude",
+  "title": "Hey there! 👋 I'm **Pierre**, your agentic assi...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776489890565,
+  "updatedAt": 1778538209700,
+  "lastResponseAt": 1777060300825,
+  "sessionId": "9b395251-7289-4ffc-9af2-14b4775f4717",
+  "providerState": {
+    "providerSessionId": "9b395251-7289-4ffc-9af2-14b4775f4717"
+  },
+  "currentNote": "Work/Work_Prompts.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 3,
+    "cacheCreationInputTokens": 131,
+    "cacheReadInputTokens": 80221,
+    "contextWindow": 200000,
+    "contextTokens": 80355,
+    "percentage": 40,
+    "contextWindowIsAuthoritative": true
+  }
+}

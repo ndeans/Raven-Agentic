@@ -1,0 +1,24 @@
+{
+  "id": "conv-1776460126216-oav61jr6c",
+  "providerId": "claude",
+  "title": "Hello! Thank you for the greeting. I'm **Pierre...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776460126220,
+  "updatedAt": 1779049733012,
+  "lastResponseAt": 1779049733012,
+  "sessionId": "acaf7359-96f8-4572-8015-e0af81c29995",
+  "providerState": {
+    "providerSessionId": "acaf7359-96f8-4572-8015-e0af81c29995"
+  },
+  "currentNote": "Work/Challenges.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 1,
+    "cacheCreationInputTokens": 815,
+    "cacheReadInputTokens": 50963,
+    "contextWindow": 200000,
+    "contextTokens": 51779,
+    "percentage": 26,
+    "contextWindowIsAuthoritative": true
+  }
+}

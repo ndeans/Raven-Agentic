@@ -1,0 +1,23 @@
+{
+  "id": "conv-1775007888499-g12yegfee",
+  "providerId": "claude",
+  "title": "Initiate chat",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775007888501,
+  "updatedAt": 1775757730580,
+  "lastResponseAt": 1775757193046,
+  "sessionId": "83f378f1-e62c-4a84-9b70-e800efb8e5db",
+  "providerState": {
+    "providerSessionId": "83f378f1-e62c-4a84-9b70-e800efb8e5db"
+  },
+  "currentNote": "Init/Initial_Prompts.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 3,
+    "cacheCreationInputTokens": 77922,
+    "cacheReadInputTokens": 7385,
+    "contextWindow": 200000,
+    "contextTokens": 85310,
+    "percentage": 43
+  }
+}

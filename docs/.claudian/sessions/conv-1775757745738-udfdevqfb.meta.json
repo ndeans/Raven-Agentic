@@ -1,0 +1,24 @@
+{
+  "id": "conv-1775757745738-udfdevqfb",
+  "providerId": "claude",
+  "title": "I appreciate the greeting! I'm **Pierre**, and ...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1775757745739,
+  "updatedAt": 1776446702534,
+  "lastResponseAt": 1776446680828,
+  "sessionId": "7456d42a-f4a9-453b-bcd3-3c03d88669b0",
+  "providerState": {
+    "providerSessionId": "7456d42a-f4a9-453b-bcd3-3c03d88669b0"
+  },
+  "currentNote": "Work/Ideas.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 1,
+    "cacheCreationInputTokens": 860,
+    "cacheReadInputTokens": 15990,
+    "contextWindow": 200000,
+    "contextTokens": 16851,
+    "percentage": 8,
+    "contextWindowIsAuthoritative": false
+  }
+}

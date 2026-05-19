@@ -1,0 +1,24 @@
+{
+  "id": "conv-1776709171494-500cwkamv",
+  "providerId": "claude",
+  "title": "Begin session",
+  "titleGenerationStatus": "success",
+  "createdAt": 1776709171494,
+  "updatedAt": 1776894399522,
+  "lastResponseAt": 1776894391955,
+  "sessionId": "7029858a-216a-4a81-8bb3-fd0444be70b4",
+  "providerState": {
+    "providerSessionId": "7029858a-216a-4a81-8bb3-fd0444be70b4"
+  },
+  "currentNote": "Work/Work_Prompts.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 3,
+    "cacheCreationInputTokens": 167,
+    "cacheReadInputTokens": 24606,
+    "contextWindow": 200000,
+    "contextTokens": 24776,
+    "percentage": 12,
+    "contextWindowIsAuthoritative": true
+  }
+}
