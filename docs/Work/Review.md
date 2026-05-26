@@ -47,43 +47,6 @@ Successfully verified the end-to-end upload pipeline using a simulated payload.
 
 ---
 
-## Agentic Performance Metrics
-
-### Larry - Onboarding Cost Analysis 2026-03-17
-
-### **Operational Summary**
-*   **Total Tool Calls**: 20
-*   **Directory/File Discovery**: 6 calls (`list_dir`, `find_by_name`)
-*   **Documentation & Code Reads**: 5 files (Totaling ~515 lines of code/markdown)
-*   **Task/Artifact Management**: 8 calls (Setting up and updating `task.md` and UI state)
-*   **Communication**: 1 call (`notify_user`)
-
-### **Data & Token Estimates**
-| Activity | Details | Estimated Volume |
-| :--- | :--- | :--- |
-| **Documentation Reads** | `Initiator.md`, `_review.md` | ~10.5 KB (~3k tokens) |
-| **Code Analysis** | `Maria_DAO`, `MongoDao`, `PruneJob` | ~10.8 KB (~3k tokens) |
-| **Context Overhead** | System prompts, tool definitions, directory listings | ~15-20k tokens* |
-| **Total Input Processed** | Includes full conversation history | **~25k - 30k tokens** |
-
-*\*Context overhead is common for agentic workflows to ensure I understand the tools and project constraints perfectly.*
-
-### **Files Analyzed**
-1.  **[Raven Project Initiator.md](file:///home/ndeans/Projects/Raven/docs/Raven%20Project%20Initiator.md)** (195 lines)
-2.  **[_review.md](file:///home/ndeans/Projects/Raven/docs/_review.md)** (35 lines)
-3.  **[Maria_DAO.java](file:///home/ndeans/Projects/java_projects/Raven-Processor/src/main/java/us/deans/raven/processor/Maria_DAO.java)** (127 lines)
-4.  **[MongoDao.java](file:///home/ndeans/Projects/java_projects/Raven-Processor/src/main/java/us/deans/raven/processor/MongoDao.java)** (100 lines)
-5.  **[PruneJob.java](file:///home/ndeans/Projects/java_projects/Raven-Jobs/src/main/java/us/deans/raven/jobs/PruneJob.java)** (58 lines)
-
-### Test/Temp
-
-| Activity | Details | Estimated Volume |
-| :--- | :--- | :--- |
-| **Documentation Reads** | [Initiator.md](cci:7://file:///home/ndeans/Projects/Raven/docs/Raven%20Project%20Initiator.md:0:0-0:0), [_review.md](cci:7://file:///home/ndeans/Projects/Raven/docs/_review.md:0:0-0:0) | ~10.5 KB (~3k tokens) |
-| **Code Analysis** | [Maria_DAO](cci:2://file:///home/ndeans/Projects/java_projects/Raven-Processor/src/main/java/us/deans/raven/processor/Maria_DAO.java:9:0-125:1), [MongoDao](cci:2://file:///home/ndeans/Projects/java_projects/Raven-Processor/src/main/java/us/deans/raven/processor/MongoDao.java:12:0-98:1), [PruneJob](cci:2://file:///home/ndeans/Projects/java_projects/Raven-Jobs/src/main/java/us/deans/raven/jobs/PruneJob.java:9:0-56:1) | ~10.8 KB (~3k tokens) |
-| **Context Overhead** | System prompts, tool definitions, directory listings | ~15-20k tokens* |
-| **Total Input Processed** | Includes full conversation history | **~25k - 30k tokens** |
-
 ## Operation R7 - Review (2026-05-16)
 
 R7 is complete and deployed end-to-end across Raven-Processor, Raven-Jobs, and Raven-Jakarta-Web.
@@ -116,6 +79,49 @@ Two JSF pages:
 ### Status
 
 Implemented, tested via R7TestRunner against live data, and accessible through the Raven-Web UI. No known issues.
+
+---
+
+## WP-13 : UI Modifications (2026-05-25)
+
+All changes are in `Raven-Jakarta-Web`, branch `WP13_UI_Mods`.
+
+### What Was Built
+
+**Scrollable Tables**
+
+All data tables are wrapped in a `<div class="table-scroll">` container (`overflow-y: auto; max-height: 80vh`). Column headers use `position: sticky; top: 0` so they remain visible while scrolling. Applied to `view-uploads.xhtml`, `view-upload.xhtml`, and `view-conversations.xhtml`.
+
+**Hamburger Menu**
+
+A fixed-position menu appears in the top-right corner of every view page. It contains a link to `about.xhtml` and the dark mode toggle. Implemented as a plain HTML `<div class="menu-container">` with a `<button class="hamburger">` triggering a CSS `hidden` toggle via `toggleMenu()`. The menu must be placed inside `<f:view>` on pages that use that wrapper — content placed outside `<f:view>` is silently dropped by Facelets.
+
+**Dark Mode**
+
+Color mode is stored in `localStorage` under the key `ravenColorMode`. On each page load, an inline script at the top of `<h:body>` reads the key and adds the `dark` class to `<body>` before any content renders, preventing a flash of unstyled content. The toggle in the hamburger menu calls `toggleColorMode()` which flips the class and persists the new value.
+
+CSS dark mode rules cover:
+- `body.dark` — page background `#2f3533`
+- `body.dark h1, h2, h3` — `cornsilk`
+- `body.dark td` — text `#ffdf5d`, background `#2f3533`
+- `body.dark a` — `#99ccff` (pale blue, replacing the default dark blue which is unreadable on dark backgrounds)
+- `th` — static across both modes: `color: #ffdf5d; background-color: grey`
+
+**CSS Consolidation**
+
+The stylesheet had accumulated duplicate selectors (`h1`, `td`, `th`, `.btn-upload`, `.btn-dialogs` each defined two or three times) from incremental additions. All rules were collapsed into single canonical blocks, which also cleared IntelliJ's pre-commit inspection errors.
+
+**Deployment — `Raven-Web` Context Root**
+
+Deployments now use jboss-cli `deploy --force --name=Raven-Web.war` with an absolute path. The `--name` flag sets the runtime name in Wildfly, making the context root `/Raven-Web` regardless of which project built the WAR. This implements the intended swap architecture — `Raven-Jakarta-Web` and a future `Raven-Spring-Web` can be deployed interchangeably under the same canonical name. The old file-copy deployment under `/Raven-Jakarta-Web` has been removed. Procedure is documented in `_runbook.md` section 6.
+
+### Screenshots
+
+_(to be added)_
+
+### Status
+
+Complete and deployed at `http://192.168.12.132:8080/Raven-Web/`. No known issues.
 
 ---
 
